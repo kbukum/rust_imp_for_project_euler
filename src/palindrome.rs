@@ -62,7 +62,16 @@ mod tests {
 
     #[test]
     fn find_the_largest_palindrome_product() {
-
+        let product_digit: u32 = 1;
+        let largest_palindrome_product = palindrome::_find_the_largest_palindrome_product(product_digit);
+        assert_eq!(largest_palindrome_product.is_some(), true);
+        let ((_, _), c) = largest_palindrome_product.unwrap();
+        assert_eq!(9, c);
+        let product_digit: u32 = 3;
+        let largest_palindrome_product = palindrome::_find_the_largest_palindrome_product(product_digit);
+        assert_eq!(largest_palindrome_product.is_some(), true);
+        let ((_, _), c) = largest_palindrome_product.unwrap();
+        assert_eq!(906609, c);
     }
 
     #[test]
