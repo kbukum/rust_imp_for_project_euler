@@ -35,5 +35,4 @@ fn main() {
     print_header("Prime Factor", vec![
         ("Find the largest prime factor",  prime_factor::find_the_largest_prime_factor),
     ]);
-
 }
