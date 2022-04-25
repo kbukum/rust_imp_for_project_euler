@@ -3,6 +3,7 @@ mod arrays;
 mod fibonacci;
 mod prime_factor;
 mod palindrome;
+mod series;
 
 /// This global variable refers to the title for the application.
 static  APPLICATION_NAME: &str = "Implementation of the Project Euler Problems in Rust!";
@@ -37,5 +38,9 @@ fn main() {
 
     print_header("Smallest multiple", vec![
         ("Find the smallest multiple",  multiples::find_the_smallest_of_multiples_evenly_divided),
+    ]);
+
+    print_header("Series", vec![
+        ("Sum square difference",  series::sum_square_difference),
     ]);
 }
