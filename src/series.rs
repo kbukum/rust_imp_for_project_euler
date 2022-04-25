@@ -7,9 +7,9 @@
 /// Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is,
 /// 3025 - 385 = 2640
 /// Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+/// Sum of Square of sequences, 1..n = 1^2 + 2^2 + ... + n^2
+/// Square of Sum of sequences, (1..n = 1 + 2 + ... + n)^2 = 1^2 + 1 * (((n * n + 1)/2) - 1) + 1^2 + 2 * (((n * (n + 1))/2) - 2)
 pub(crate) fn sum_square_difference() {
-    /// Sum of Square of sequences, 1..n = 1^2 + 2^2 + ... + n^2
-    /// Square of Sum of sequences, (1..n = 1 + 2 + ... + n)^2 = 1^2 + 1 * (((n * n + 1)/2) - 1) + 1^2 + 2 * (((n * (n + 1))/2) - 2)
     let n = 100;
     let sum_square_diff = _sum_square_difference(n);
     println!("Sum square difference for {} natural numbers = {}", n, sum_square_diff);
