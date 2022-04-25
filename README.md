@@ -43,7 +43,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 ```
 
-### Sum square difference
+### Sum square difference, [reference](https://projecteuler.net/problem=6)
 
 ```
 The sum of the squares of the first ten natural numbers is, 
