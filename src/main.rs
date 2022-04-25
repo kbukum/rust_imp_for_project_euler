@@ -34,4 +34,8 @@ fn main() {
     print_header("Largest palindrome product", vec![
         ("Find the largest palindrome of the products",  palindrome::find_the_largest_palindrome_product),
     ]);
+
+    print_header("Smallest multiple", vec![
+        ("Find the smallest multiple",  multiples::find_the_smallest_of_multiples_evenly_divided),
+    ]);
 }

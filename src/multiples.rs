@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+use std::ops::Range;
 use combinations::Combinations;
 use crate::arrays;
 /// # Multiples of 3 or 5
@@ -102,23 +104,75 @@ fn has_factor_in_array(factors: &[u64], num: u64) -> bool {
     false
 }
 
+/// # Smallest multiple
+/// 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+/// What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+pub(crate) fn find_the_smallest_of_multiples_evenly_divided() {
+    let range = 1..20;
+    let smallest_multiple = _find_the_smallest_of_multiples_evenly_divided(range.clone());
+    println!("Smallest Multiple for the range of {:?} is {}", range, smallest_multiple);
+}
+
+fn _find_the_smallest_of_multiples_evenly_divided(range: Range<u64>) -> u64 {
+    let mut prime_factors_map: HashMap<u64, u32> = HashMap::new();
+    // 1, 2, 3, 4,
+    for factor in range {
+        if factor == 1 {
+            continue;
+        }
+        let mut is_prime_factor = true;
+        for  (prime_factor, prime_factor_count) in prime_factors_map.iter_mut() {
+            let mut factor_down = factor;
+            if factor_down % prime_factor != 0 {
+                continue;
+            }
+            is_prime_factor = false;
+            let mut prime_count: u32 = 0;
+            while factor_down % prime_factor == 0 {
+                factor_down = factor_down/prime_factor;
+                prime_count += 1;
+            }
+            if prime_count > *prime_factor_count {
+                *prime_factor_count = prime_count;
+            }
+        }
+
+        if is_prime_factor {
+            prime_factors_map.insert(factor, 1);
+        }
+    }
+
+    let mut smallest_multiple: u64 = 1;
+    for (prime_factor, prime_factor_count) in prime_factors_map {
+        smallest_multiple *= prime_factor.pow(prime_factor_count);
+    }
+    smallest_multiple
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::multiples::{_find_the_sum_of_multiples_of_the_factors, has_factor_in_array};
+    use crate::multiples;
 
     #[test]
     fn _find_the_sum_of_multiples_of_the_factors_test() {
-        let total_sum_3_5 = _find_the_sum_of_multiples_of_the_factors(&mut [3, 5], 999);
+        let total_sum_3_5 = multiples::_find_the_sum_of_multiples_of_the_factors(&mut [3, 5], 999);
         assert_eq!(233168, total_sum_3_5);
-        let total_sum_3_5 = _find_the_sum_of_multiples_of_the_factors(&mut [3, 5, 5], 999);
+        let total_sum_3_5 = multiples::_find_the_sum_of_multiples_of_the_factors(&mut [3, 5, 5], 999);
         assert_eq!(233168, total_sum_3_5);
     }
 
     #[test]
     fn has_factor_in_array_test() {
         let sets = [3, 4, 5];
-        assert_eq!(has_factor_in_array(&sets, 10), true);
-        assert_eq!(has_factor_in_array(&sets, 7), false);
+        assert_eq!(multiples::has_factor_in_array(&sets, 10), true);
+        assert_eq!(multiples::has_factor_in_array(&sets, 7), false);
+    }
+
+    #[test]
+    fn _find_the_smallest_of_multiples_evenly_divided() {
+        let range = 1..10;
+        let smallest_multiple = multiples::_find_the_smallest_of_multiples_evenly_divided(range.clone());
+        assert_eq!(2520, smallest_multiple);
     }
 }
 
