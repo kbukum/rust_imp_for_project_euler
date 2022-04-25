@@ -30,6 +30,7 @@ fn main() {
 
     print_header("Prime Factor", vec![
         ("Find the largest prime factor",  prime_factor::find_the_largest_prime_factor),
+        ("Find the nth prime factor",  prime_factor::find_the_nth_prime),
     ]);
 
     print_header("Largest palindrome product", vec![
