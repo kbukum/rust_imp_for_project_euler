@@ -31,6 +31,7 @@ fn main() {
     print_header("Prime Factor", vec![
         ("Find the largest prime factor",  prime_factor::find_the_largest_prime_factor),
         ("Find the nth prime factor",  prime_factor::find_the_nth_prime),
+        ("Find the sum of the primes",  prime_factor::find_sum_of_primes),
     ]);
 
     print_header("Largest palindrome product", vec![
@@ -43,5 +44,7 @@ fn main() {
 
     print_header("Series", vec![
         ("Sum square difference",  series::sum_square_difference),
+        ("Largest product in a series",  series::find_the_greatest_product_of_adjacent_digits),
+        ("Largest product in a series",  series::find_pythagorean_triplet_set),
     ]);
 }

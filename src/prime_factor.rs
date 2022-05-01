@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 /// The largest prime factor
 /// The prime factors of 13195 are 5, 7, 13 and 29.
 /// What is the largest prime factor of the number 600851475143 ?
@@ -80,6 +82,45 @@ fn _ordinal_suffix_of(i: u64) -> String {
     return format!("{}th", i);
 }
 
+
+/// # Summation of primes
+/// Show HTML problem content
+/// Problem 10
+/// The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+///
+/// Find the sum of all the primes below two million.
+pub fn find_sum_of_primes() {
+    let max_value:u64 = 2 * (10 as u64).pow(4) as u64;
+
+    let sum_of_primes = _find_sum_of_primes(max_value);
+    println!("The sum of all primes below {} = {}", max_value, sum_of_primes);
+}
+
+fn _find_sum_of_primes(max_value: u64) -> u64 {
+    if max_value < 2 { return 0};
+
+    let mut prime_set:HashSet<u64> = HashSet::new();
+    let mut sum_of_primes= 0;
+    for i in (3..max_value).step_by(2) {
+        if !_has_factor_in_set(i, &prime_set) {
+            prime_set.insert(i);
+            sum_of_primes += i;
+        }
+    }
+    sum_of_primes += 2; // add 2 to sum of primes.
+    sum_of_primes
+}
+
+fn _has_factor_in_set(num: u64, prime_set: &HashSet<u64>)  -> bool {
+    for p in prime_set { // check if the number is has factor
+        if num % p == 0 {
+            return true; // the number has factor
+        }
+    }
+    return false // the number doesn't have any factor
+}
+
+
 #[cfg(test)]
 mod tests {
     use std::collections::HashMap;
@@ -111,5 +152,12 @@ mod tests {
             let largest_prime_factor = prime_factor::_find_the_largest_prime_factor(n);
             assert_eq!(expected_larges_prime_factor, largest_prime_factor);
         }
+    }
+
+    #[test]
+    fn _find_sum_of_primes() {
+        let max_value:u64 = 10;
+        let sum_of_primes = prime_factor::_find_sum_of_primes(max_value);
+        assert_eq!(17, sum_of_primes);
     }
 }
